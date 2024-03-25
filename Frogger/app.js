@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Show touch buttons if the game is played on a mobile device
   if (isMobileDevice()) {
-    touchButtons.style.display = 'block';
+    touchButtons.setAttribute.display = 'block';
   }
 });
 

@@ -88,7 +88,17 @@ function moveUser(e) {
     }
 }
 
+// Move user for touch events
+function moveUserTouch(event) {
+    const touchX = event.touches[0].clientX - grid.offsetLeft;
+    if (touchX >= 0 && touchX <= boardWidth - blockWidth) {
+        currentPosition[0] = touchX;
+        drawUser();
+    }
+}
+
 document.addEventListener('keydown', moveUser);
+grid.addEventListener('touchmove', moveUserTouch);
 
 // Add ball
 const ball = document.createElement('div');
@@ -132,6 +142,7 @@ function checkForCollisions() {
                 scoreDisplay.innerHTML = "YOU WIN";
                 clearInterval(timerId);
                 document.removeEventListener('keydown', moveUser);
+                grid.removeEventListener('touchmove', moveUserTouch);
             }
         }
     }
@@ -158,6 +169,7 @@ function checkForCollisions() {
         clearInterval(timerId);
         scoreDisplay.innerHTML = "You lose";
         document.removeEventListener('keydown', moveUser);
+        grid.removeEventListener('touchmove', moveUserTouch);
     }
 }
 

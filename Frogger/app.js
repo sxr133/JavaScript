@@ -205,7 +205,7 @@ startPauseButton.addEventListener('click', () => {
 
 // Check if the game is played on a mobile device
 function isMobileDevice() {
-  return (navigator.userAgent.indexOf('IEMobile') !== -1);
+  return /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
 }
 
 document.addEventListener("DOMContentLoaded", function() {

@@ -203,6 +203,20 @@ startPauseButton.addEventListener('click', () => {
   }
 });
 
+// Check if the game is played on a mobile device
+function isMobileDevice() {
+  return (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const touchButtons = document.getElementById('touch-buttons');
+
+  // Show touch buttons if the game is played on a mobile device
+  if (isMobileDevice()) {
+    touchButtons.style.display = 'block';
+  }
+});
+
 // Handling touch events for mobile devices
 document.getElementById('left-button').addEventListener('click', () => moveFrogTouch('left'));
 document.getElementById('right-button').addEventListener('click', () => moveFrogTouch('right'));

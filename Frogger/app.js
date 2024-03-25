@@ -34,6 +34,26 @@ function moveFrog(e) {
   squares[currentIndex].classList.add('frog')  
 }
 
+function moveFrogTouch(direction) {
+  squares[currentIndex].classList.remove('frog');
+
+  switch(direction) {
+    case 'left':
+      if (currentIndex % width != 0) currentIndex -= 1;
+      break;
+    case 'right':
+      if (currentIndex % width < width - 1) currentIndex += 1;
+      break;
+    case 'up':
+      if (currentIndex - width  >= 0) currentIndex -= width;
+      break;
+    case 'down':
+      if (currentIndex + width < width * width) currentIndex += width;
+      break;
+  }
+
+  squares[currentIndex].classList.add('frog');  
+}
 
 function autoMoveElements() {
   currentTime--
@@ -181,4 +201,10 @@ startPauseButton.addEventListener('click', () => {
     outcomeTimerId = setInterval(checkOutcomes, 50)
     document.addEventListener('keyup', moveFrog)
   }
-})
+});
+
+// Handling touch events for mobile devices
+document.getElementById('left-button').addEventListener('click', () => moveFrogTouch('left'));
+document.getElementById('right-button').addEventListener('click', () => moveFrogTouch('right'));
+document.getElementById('up-button').addEventListener('click', () => moveFrogTouch('up'));
+document.getElementById('down-button').addEventListener('click', () => moveFrogTouch('down'));
